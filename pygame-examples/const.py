@@ -11,6 +11,6 @@ class Colors:
     WHITE = (255, 255, 255)
 
 
-
 class Gravity:
     Earth = (9.81, 0)
+    No = (0, 0)
