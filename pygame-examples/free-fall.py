@@ -14,19 +14,9 @@ def main():
         v_y=0,
         boundary_x=Window.HEIGHT,
         boundary_y=Window.WIDTH,
-        color=Colors.PINK,
+        color=Colors.WHITE,
     )
-    obj2 = Object(
-        x=200,
-        y=300,
-        height=40,
-        width=40,
-        v_x=25,
-        v_y=-60,
-        boundary_x=Window.HEIGHT,
-        boundary_y=Window.WIDTH,
-        color=Colors.PINK,
-    )
+
     timestep = 100
     pygame.init()
     clock = pygame.time.Clock()
@@ -37,7 +27,7 @@ def main():
     run = True
     while run:
         clock.tick(timestep)
-        surface.fill(Colors.GREEN)  # Window Bg
+        surface.fill(Colors.BLACK)  # Window Bg
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:  # To quit on clicking the X
