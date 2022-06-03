@@ -1,6 +1,6 @@
 import math
 import random
-from typing import Tuple, List
+from typing import Tuple, List, Dict
 from paddle2 import Paddle
 import pygame
 
@@ -22,7 +22,7 @@ class Ball:
         self.radius = radius
         self.color = color
 
-    def update(self, timestep: float, paddles: List[Paddle]):
+    def update(self, timestep: float, paddles: List[Paddle], scores: Dict[str, int]):
         boundary_x, boundary_y = pygame.display.get_surface().get_size()
 
         self.x += self.v * math.cos(self.bearing) * timestep
@@ -31,10 +31,12 @@ class Ball:
             self.bearing = 2 * math.pi - self.bearing
         if self.x >= boundary_x:
             # logic for left player getting a point
+            scores['left'] += 1
             print("Point for left player")
             self.restart()
         if self.x <= 0:
             # logic for right player getting a point
+            scores['right'] += 1
             print("Point for right player")
             self.restart()
         for paddle in paddles:
@@ -47,8 +49,6 @@ class Ball:
             ) and (
                 self.y + self.radius <= paddle.y + paddle.height / 2
             ):
-                print(f'Ball(x={self.x}, y={self.y}, r={self.radius})')
-                print(f'Paddle(x={paddle.x}, y={paddle.y}, width={paddle.width}, height={paddle.height}, color={paddle.color})')
                 self.bearing = math.pi - self.bearing
 
     def draw(self, surface):

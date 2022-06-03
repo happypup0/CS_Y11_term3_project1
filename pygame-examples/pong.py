@@ -19,7 +19,7 @@ def restart_game(ball: Ball, min_velocity: int = 20, max_velocity: int = 50):
     ball.v_y = v_y
 
 
-def main(friction=0.02, n_balls=2):
+def main(friction=0.02, n_balls=1):
     pygame.init()
     font = pygame.font.SysFont("verdana", 16)
     timestep = 100

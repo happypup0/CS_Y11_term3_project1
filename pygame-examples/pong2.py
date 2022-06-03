@@ -32,8 +32,13 @@ def main():
     clock = pygame.time.Clock()
     surface = pygame.display.set_mode(Window.SIZE)  # Displaying on specified window size
     pygame.display.set_caption("Our game")
+    font = pygame.font.SysFont("verdana", 16)
     run = True
     ball.restart()
+    scores = {
+        'left': 0,
+        'right': 0
+    }
     while run:
         clock.tick(timestep)
         surface.fill(Colors.GREEN)  # Window Bg
@@ -49,12 +54,13 @@ def main():
 
         paddle1.update(timestep/1000, paddle1_up, paddle1_down)
         paddle2.update(timestep / 1000, paddle2_up, paddle2_down)
-        ball.update(timestep/1000, paddles=[paddle1, paddle2])
+        ball.update(timestep/1000, paddles=[paddle1, paddle2], scores=scores)
 
-        paddle1.draw(surface)
-        paddle2.draw(surface)
+        paddle1.draw(surface, score=scores['left'], font=font)
+        paddle2.draw(surface, score=scores['right'], font=font)
         ball.draw(surface)
         pygame.display.update()  # To update the display with newly added codes
+        print(scores)
 
     pygame.quit()
 

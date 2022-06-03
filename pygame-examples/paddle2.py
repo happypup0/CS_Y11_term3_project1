@@ -34,8 +34,11 @@ class Paddle:
             self.v = -self.v
         self.v *= (100 - self.friction) / 100
 
-    def draw(self, surface):
+    def draw(self, surface, score: int, font):
+        boundary_x, boundary_y = pygame.display.get_surface().get_size()
         rect = pygame.Rect(
             self.x - self.width / 2, self.y - self.height / 2, self.width, self.height
         )
         pygame.draw.rect(surface, self.color, rect)
+        text = font.render(str(score), True, self.color)
+        surface.blit(text, (self.x - 0.5 * text.get_width(), boundary_y - 2 * text.get_width()))
