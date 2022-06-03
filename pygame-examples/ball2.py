@@ -39,12 +39,12 @@ class Ball:
             self.restart()
         for paddle in paddles:
             if (
-                    (self.x - self.radius >= paddle.x - paddle.width / 2)
-                    or (self.x - self.radius <= paddle.x + paddle.width / 2)
+                    (self.x - self.radius <= paddle.x + paddle.width / 2)
+                    or (self.x - self.radius >= paddle.x - paddle.width / 2)
             ) and (
-                self.y - self.radius <= paddle.y + paddle.height / 2
+                self.y - self.radius >= paddle.y - paddle.height / 2
             ) and (
-                self.y + self.radius >= paddle.y - paddle.height / 2
+                self.y + self.radius <= paddle.y + paddle.height / 2
             ):
                 self.bearing = math.pi - self.bearing
 
@@ -55,7 +55,7 @@ class Ball:
         boundary_x, boundary_y = pygame.display.get_surface().get_size()
         self.x = boundary_x / 2
         self.y = boundary_y / 2
-        self.v = random.randint(30, 50)
+        self.v = random.randint(20, 30)
         bearing = 1/4
         while 1/8 <= bearing <= 3/8 or 5/8 <= bearing <= 7/8:
             bearing = random.random()

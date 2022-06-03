@@ -14,7 +14,7 @@ def main():
     )
     paddle2 = Paddle(
         x=Window.WIDTH - 100,
-        y=100,
+        y=300,
         height=120,
         width=20,
         color=Colors.BLUE
